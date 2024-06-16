@@ -55,10 +55,12 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>register</title>
+   <title>Обновить данные</title>
    
+   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
+   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -69,14 +71,14 @@ if(isset($_POST['submit'])){
 <section class="form-container">
 
    <form action="" method="post">
-      <h3>Обноавить профиль</h3>
+      <h3>Обновить данные</h3>
       <input type="hidden" name="prev_pass" value="<?= $fetch_profile["password"]; ?>">
-      <input type="text" name="name" required placeholder="Ведите ваше имя пользователя" maxlength="20"  class="box" value="<?= $fetch_profile["name"]; ?>">
-      <input type="email" name="email" required placeholder="Введите вашу почту" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_profile["email"]; ?>">
-      <input type="password" name="old_pass" placeholder="Введите ваш старый пароль" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="new_pass" placeholder="Ведите ваш новый пароль" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="text" name="name" required placeholder="Введите имя пользователя" maxlength="20"  class="box" value="<?= $fetch_profile["name"]; ?>">
+      <input type="email" name="email" required placeholder="Ведите почту" maxlength="50"  class="box" oninput="this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_profile["email"]; ?>">
+      <input type="password" name="old_pass" placeholder="Введите старый пароль" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="new_pass" placeholder="Введите новый пароль" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="cpass" placeholder="Подтвердите новый пароль" maxlength="20"  class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="submit" value="Обноавить" class="btn" name="submit">
+      <input type="submit" value="Обновить" class="btn" name="submit">
    </form>
 
 </section>

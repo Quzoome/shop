@@ -29,7 +29,7 @@ if(isset($_POST['update_qty'])){
    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
    $update_qty = $conn->prepare("UPDATE `cart` SET quantity = ? WHERE id = ?");
    $update_qty->execute([$qty, $cart_id]);
-   $message[] = 'cart quantity updated';
+   $message[] = 'Обновлено!';
 }
 
 ?>
@@ -56,7 +56,8 @@ if(isset($_POST['update_qty'])){
    <h3 class="heading">Корзина</h3>
 
    <div class="box-container">
-         <?php
+
+   <?php
       $grand_total = 0;
       $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
       $select_cart->execute([$user_id]);
@@ -73,23 +74,23 @@ if(isset($_POST['update_qty'])){
          <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="<?= $fetch_cart['quantity']; ?>">
          <button type="submit" class="fas fa-edit" name="update_qty"></button>
       </div>
-      <div class="sub-total"> sub total : <span>$<?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?>/-</span> </div>
-      <input type="submit" value="delete item" onclick="return confirm('delete this from cart?');" class="delete-btn" name="delete">
+      <div class="sub-total"> Цена товара : <span><?= $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?> руб.</span> </div>
+      <input type="submit" value="Удалить товар" onclick="return confirm('Удалить товар из корзины?');" class="delete-btn" name="delete">
    </form>
    <?php
    $grand_total += $sub_total;
       }
    }else{
-      echo '<p class="empty">Ваша корзина пуста!</p>';
+      echo '<p class="empty">Корзина пуста!</p>';
    }
    ?>
    </div>
 
    <div class="cart-total">
-      <p>Итоговая цена <span>$/-</span></p>
+      <p>Итого : <span><?= $grand_total; ?> руб.</span></p>
       <a href="shop.php" class="option-btn">Продолжить покупки</a>
-      <a href="cart.php?delete_all" class="delete-btn">Удалить все</a>
-      <a href="checkout.php" class="btn">Перейти к оплате</a>
+      <a href="cart.php?delete_all" class="delete-btn <?= ($grand_total > 1)?'':'disabled'; ?>" onclick="return confirm('Удалить все товары из корзины?');">Удалить всё</a>
+      <a href="checkout.php" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>">Перейти к оплате</a>
    </div>
 
 </section>

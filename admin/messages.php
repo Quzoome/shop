@@ -1,3 +1,24 @@
+<?php
+
+include '../components/connect.php';
+
+session_start();
+
+$admin_id = $_SESSION['admin_id'];
+
+if(!isset($admin_id)){
+   header('location:admin_login.php');
+};
+
+if(isset($_GET['delete'])){
+   $delete_id = $_GET['delete'];
+   $delete_message = $conn->prepare("DELETE FROM `messages` WHERE id = ?");
+   $delete_message->execute([$delete_id]);
+   header('location:messages.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +38,31 @@
 
 <section class="contacts">
 
-<h1 class="heading"></h1>
+<h1 class="heading">Сообщения</h1>
 
 <div class="box-container">
-   <p class="empty">У вас нет сообщений</p>
+
+   <?php
+      $select_messages = $conn->prepare("SELECT * FROM `messages`");
+      $select_messages->execute();
+      if($select_messages->rowCount() > 0){
+         while($fetch_message = $select_messages->fetch(PDO::FETCH_ASSOC)){
+   ?>
+   <div class="box">
+   <p> id пользователя : <span><?= $fetch_message['user_id']; ?></span></p>
+   <p> Имя : <span><?= $fetch_message['name']; ?></span></p>
+   <p> Почта : <span><?= $fetch_message['email']; ?></span></p>
+   <p> Номер : <span><?= $fetch_message['number']; ?></span></p>
+   <p> Сообщение : <span><?= $fetch_message['message']; ?></span></p>
+   <a href="messages.php??delete=<?= $fetch_message['id']; ?>" onclick="return confirm('Удалить это сообщение?');" class="delete-btn">Удалить</a>
+   </div>
+   <?php
+         }
+      }else{
+         echo '<p class="empty">У вас нет сообщений</p>';
+      }
+   ?>
+
 </div>
 
 </section>

@@ -105,7 +105,7 @@ if(isset($_POST['update'])){
 
 <section class="update-product">
 
-   <h1 class="heading">Обновить товар</h1>
+   <h1 class="heading">update product</h1>
 
    <?php
       $update_id = $_GET['update'];
@@ -129,28 +129,28 @@ if(isset($_POST['update'])){
             <img src="../uploaded_img/<?= $fetch_products['image_03']; ?>" alt="">
          </div>
       </div>
-      <span>Обновить название</span>
-      <input type="text" name="name" required class="box" maxlength="100" placeholder="Введите название товара" value="<?= $fetch_products['name']; ?>">
-      <span>Обновить цену</span>
-      <input type="number" name="price" required class="box" min="0" max="9999999999" placeholder="Введите цену товара" onkeypress="if(this.value.length == 10) return false;" value="<?= $fetch_products['price']; ?>">
-      <span>Обновить описание</span>
+      <span>update name</span>
+      <input type="text" name="name" required class="box" maxlength="100" placeholder="enter product name" value="<?= $fetch_products['name']; ?>">
+      <span>update price</span>
+      <input type="number" name="price" required class="box" min="0" max="9999999999" placeholder="enter product price" onkeypress="if(this.value.length == 10) return false;" value="<?= $fetch_products['price']; ?>">
+      <span>update details</span>
       <textarea name="details" class="box" required cols="30" rows="10"><?= $fetch_products['details']; ?></textarea>
-      <span>Обновить первую фотографию</span>
+      <span>update image 01</span>
       <input type="file" name="image_01" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
-      <span>Обновить вторую фотографию</span>
+      <span>update image 02</span>
       <input type="file" name="image_02" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
-      <span>Обновить третью фотографию</span>
+      <span>update image 03</span>
       <input type="file" name="image_03" accept="image/jpg, image/jpeg, image/png, image/webp" class="box">
       <div class="flex-btn">
-         <input type="submit" name="update" class="btn" value="Обновить">
-         <a href="products.php" class="option-btn">Вернуться</a>
+         <input type="submit" name="update" class="btn" value="update">
+         <a href="products.php" class="option-btn">go back</a>
       </div>
    </form>
    
    <?php
          }
       }else{
-         echo '<p class="empty">Товаров не найдено!</p>';
+         echo '<p class="empty">no product found!</p>';
       }
    ?>
 

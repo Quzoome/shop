@@ -1,11 +1,26 @@
+<?php
+
+include 'components/connect.php';
+
+session_start();
+
+if(isset($_SESSION['user_id'])){
+   $user_id = $_SESSION['user_id'];
+}else{
+   $user_id = '';
+};
+
+include 'components/wishlist_cart.php';
+
+?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>Главная</title>
 
    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
    
@@ -33,9 +48,9 @@
             <img src="images/home-img-1.png" alt="">
          </div>
          <div class="content">
-            <span>Скидка до 50%</span>
-            <h3>Новейшие смартфоны</h3>
-            <a href="shop.php" class="btn">Купить сейчас!</a>
+            <span>скидка до 50%</span>
+            <h3>новейшие смартфоны</h3>
+            <a href="shop.php" class="btn">купить сейчас</a>
          </div>
       </div>
 
@@ -44,9 +59,9 @@
             <img src="images/home-img-2.png" alt="">
          </div>
          <div class="content">
-            <span>Скидка до 50%</span>
-            <h3>Новейшие часы</h3>
-            <a href="shop.php" class="btn">Купите сейчас!</a>
+            <span>скидка до 50%</span>
+            <h3>новейшие часы</h3>
+            <a href="shop.php" class="btn">купить сейчас</a>
          </div>
       </div>
 
@@ -55,9 +70,9 @@
             <img src="images/home-img-3.png" alt="">
          </div>
          <div class="content">
-            <span>Скидка до 50%</span>
-            <h3>Новейшие наушники</h3>
-            <a href="shop.php" class="btn">Купите сейчас!</a>
+            <span>скидка до 50%</span>
+            <h3>новейшие наушники</h3>
+            <a href="shop.php" class="btn">купить сейчас</a>
          </div>
       </div>
 
@@ -73,7 +88,7 @@
 
 <section class="category">
 
-   <h1 class="heading">Выбор по категориям</h1>
+   <h1 class="heading">Категории товаров</h1>
 
    <div class="swiper category-slider">
 
@@ -96,7 +111,7 @@
 
    <a href="category.php?category=mouse" class="swiper-slide slide">
       <img src="images/icon-4.png" alt="">
-      <h3>Мышки</h3>
+      <h3>Комп. мыши</h3>
    </a>
 
    <a href="category.php?category=fridge" class="swiper-slide slide">
@@ -106,7 +121,7 @@
 
    <a href="category.php?category=washing" class="swiper-slide slide">
       <img src="images/icon-6.png" alt="">
-      <h3>Стиральные машины</h3>
+      <h3>Стиральные машинф</h3>
    </a>
 
    <a href="category.php?category=smartphone" class="swiper-slide slide">
@@ -135,6 +150,34 @@
 
    <div class="swiper-wrapper">
 
+   <?php
+     $select_products = $conn->prepare("SELECT * FROM `products` LIMIT 6"); 
+     $select_products->execute();
+     if($select_products->rowCount() > 0){
+      while($fetch_product = $select_products->fetch(PDO::FETCH_ASSOC)){
+   ?>
+   <form action="" method="post" class="swiper-slide slide">
+      <input type="hidden" name="pid" value="<?= $fetch_product['id']; ?>">
+      <input type="hidden" name="name" value="<?= $fetch_product['name']; ?>">
+      <input type="hidden" name="price" value="<?= $fetch_product['price']; ?>">
+      <input type="hidden" name="image" value="<?= $fetch_product['image_01']; ?>">
+      <button class="fas fa-heart" type="submit" name="add_to_wishlist"></button>
+      <a href="quick_view.php?pid=<?= $fetch_product['id']; ?>" class="fas fa-eye"></a>
+      <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
+      <div class="name"><?= $fetch_product['name']; ?></div>
+      <div class="flex">
+         <div class="price"><span>$</span><?= $fetch_product['price']; ?><span>/-</span></div>
+         <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
+      </div>
+      <input type="submit" value="добавить в корзину" class="btn" name="add_to_cart">
+   </form>
+   <?php
+      }
+   }else{
+      echo '<p class="empty">пока что нет добавленных продуктов!</p>';
+   }
+   ?>
+
    </div>
 
    <div class="swiper-pagination"></div>
@@ -160,7 +203,7 @@ var swiper = new Swiper(".home-slider", {
     },
 });
 
- var swiper = new Swiper(".category-slider", {
+var swiper = new Swiper(".category-slider", {
    loop:true,
    spaceBetween: 20,
    pagination: {

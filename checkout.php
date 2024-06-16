@@ -52,7 +52,7 @@ if(isset($_POST['order'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Оплата</title>
+   <title>checkout</title>
    
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -69,7 +69,7 @@ if(isset($_POST['order'])){
 
    <form action="" method="POST">
 
-   <h3>Заказ</h3>
+   <h3>your orders</h3>
 
       <div class="display-orders">
       <?php
@@ -95,41 +95,57 @@ if(isset($_POST['order'])){
          <div class="grand-total">grand total : <span>$<?= $grand_total; ?>/-</span></div>
       </div>
 
-      <h3>Информация о заказе</h3>
+      <h3>place your orders</h3>
 
       <div class="flex">
          <div class="inputBox">
-            <span>Ваше имя :</span>
-            <input type="text" name="name" placeholder="Ведите ваше имя" class="box" maxlength="20" required>
+            <span>your name :</span>
+            <input type="text" name="name" placeholder="enter your name" class="box" maxlength="20" required>
          </div>
          <div class="inputBox">
-            <span>Ваш номер :</span>
-            <input type="number" name="number" placeholder="Введите ваш номер" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
+            <span>your number :</span>
+            <input type="number" name="number" placeholder="enter your number" class="box" min="0" max="9999999999" onkeypress="if(this.value.length == 10) return false;" required>
          </div>
          <div class="inputBox">
-            <span>Ваша почта :</span>
-            <input type="email" name="email" placeholder="Введите вашу почту" class="box" maxlength="50" required>
+            <span>your email :</span>
+            <input type="email" name="email" placeholder="enter your email" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>Способо оплаты :</span>
+            <span>payment method :</span>
             <select name="method" class="box" required>
-               <option value="cash on delivery">Оплата наличными</option>
-               <option value="credit card">По карте</option>
-               <option value="CBP">СБП</option>
-               <option value="CBP_QR">СБП QR</option>
+               <option value="cash on delivery">cash on delivery</option>
+               <option value="credit card">credit card</option>
+               <option value="paytm">paytm</option>
+               <option value="paypal">paypal</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>Адрес :</span>
-            <input type="text" name="country" placeholder="Россия" class="box" maxlength="50" required>
+            <span>address line 01 :</span>
+            <input type="text" name="flat" placeholder="e.g. flat number" class="box" maxlength="50" required>
          </div>
          <div class="inputBox">
-            <span>Почтовый код :</span>
-            <input type="number" min="0" name="pin_code" placeholder="123456" min="0" max="999999" onkeypress="if(this.value.length == 6) return false;" class="box" required>
+            <span>address line 02 :</span>
+            <input type="text" name="street" placeholder="e.g. street name" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span>city :</span>
+            <input type="text" name="city" placeholder="e.g. mumbai" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span>state :</span>
+            <input type="text" name="state" placeholder="e.g. maharashtra" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span>country :</span>
+            <input type="text" name="country" placeholder="e.g. India" class="box" maxlength="50" required>
+         </div>
+         <div class="inputBox">
+            <span>pin code :</span>
+            <input type="number" min="0" name="pin_code" placeholder="e.g. 123456" min="0" max="999999" onkeypress="if(this.value.length == 6) return false;" class="box" required>
          </div>
       </div>
 
-      <input type="submit" name="order" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>" value="Разместить заказ">
+      <input type="submit" name="order" class="btn <?= ($grand_total > 1)?'':'disabled'; ?>" value="place order">
 
    </form>
 
