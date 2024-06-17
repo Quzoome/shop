@@ -68,11 +68,11 @@ if(isset($_GET['delete_all'])){
       <img src="uploaded_img/<?= $fetch_wishlist['image']; ?>" alt="">
       <div class="name"><?= $fetch_wishlist['name']; ?></div>
       <div class="flex">
-         <div class="price">$<?= $fetch_wishlist['price']; ?>/-</div>
+         <div class="price"><?= $fetch_wishlist['price']; ?> руб.</div>
          <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
       </div>
-      <input type="submit" value="add to cart" class="btn" name="add_to_cart">
-      <input type="submit" value="delete item" onclick="return confirm('Удалить товар?');" class="delete-btn" name="delete">
+      <input type="submit" value="Добавить в корзину" class="btn" name="add_to_cart">
+      <input type="submit" value="Удалить товар" onclick="return confirm('Удалить товар?');" class="delete-btn" name="delete">
    </form>
    <?php
       }

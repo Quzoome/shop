@@ -94,42 +94,42 @@ include 'components/wishlist_cart.php';
 
    <div class="swiper-wrapper">
 
-   <a href="category.php?category=laptop" class="swiper-slide slide">
+   <a href="category.php?category=Ноутбук" class="swiper-slide slide">
       <img src="images/icon-1.png" alt="">
       <h3>Ноутбуки</h3>
    </a>
 
-   <a href="category.php?category=tv" class="swiper-slide slide">
+   <a href="category.php?category=Телевизор" class="swiper-slide slide">
       <img src="images/icon-2.png" alt="">
       <h3>Телевизоры</h3>
    </a>
 
-   <a href="category.php?category=camera" class="swiper-slide slide">
+   <a href="category.php?category=Фотоаппарат" class="swiper-slide slide">
       <img src="images/icon-3.png" alt="">
       <h3>Камеры</h3>
    </a>
 
-   <a href="category.php?category=mouse" class="swiper-slide slide">
+   <a href="category.php?category=Мышь" class="swiper-slide slide">
       <img src="images/icon-4.png" alt="">
       <h3>Комп. мыши</h3>
    </a>
 
-   <a href="category.php?category=fridge" class="swiper-slide slide">
+   <a href="category.php?category=Холодильник" class="swiper-slide slide">
       <img src="images/icon-5.png" alt="">
       <h3>Холодильники</h3>
    </a>
 
-   <a href="category.php?category=washing" class="swiper-slide slide">
+   <a href="category.php?category=Стиральная" class="swiper-slide slide">
       <img src="images/icon-6.png" alt="">
-      <h3>Стиральные машинф</h3>
+      <h3>Стиральные машины</h3>
    </a>
 
-   <a href="category.php?category=smartphone" class="swiper-slide slide">
+   <a href="category.php?category=Смартфон" class="swiper-slide slide">
       <img src="images/icon-7.png" alt="">
       <h3>Смартфоны</h3>
    </a>
 
-   <a href="category.php?category=watch" class="swiper-slide slide">
+   <a href="category.php?category=Часы" class="swiper-slide slide">
       <img src="images/icon-8.png" alt="">
       <h3>Часы</h3>
    </a>
@@ -166,7 +166,7 @@ include 'components/wishlist_cart.php';
       <img src="uploaded_img/<?= $fetch_product['image_01']; ?>" alt="">
       <div class="name"><?= $fetch_product['name']; ?></div>
       <div class="flex">
-         <div class="price"><span>$</span><?= $fetch_product['price']; ?><span>/-</span></div>
+         <div class="price"><span></span><?= $fetch_product['price']; ?><span> руб.</span></div>
          <input type="number" name="qty" class="qty" min="1" max="99" onkeypress="if(this.value.length == 2) return false;" value="1">
       </div>
       <input type="submit" value="добавить в корзину" class="btn" name="add_to_cart">

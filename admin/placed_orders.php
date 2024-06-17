@@ -16,7 +16,7 @@ if(isset($_POST['update_payment'])){
    $payment_status = filter_var($payment_status, FILTER_SANITIZE_STRING);
    $update_payment = $conn->prepare("UPDATE `orders` SET payment_status = ? WHERE id = ?");
    $update_payment->execute([$payment_status, $order_id]);
-   $message[] = 'payment status updated!';
+   $message[] = 'Статус заказа изменен';
 }
 
 if(isset($_GET['delete'])){
@@ -60,17 +60,17 @@ if(isset($_GET['delete'])){
    <div class="box">
       <p> Размещен в : <span><?= $fetch_orders['placed_on']; ?></span> </p>
       <p> Имя : <span><?= $fetch_orders['name']; ?></span> </p>
-      <p> Номер : <span><?= $fetch_orders['number']; ?></span> </p>
+      <p> Номер телефона : <span><?= $fetch_orders['number']; ?></span> </p>
       <p> Адрес : <span><?= $fetch_orders['address']; ?></span> </p>
       <p> Всего товаров : <span><?= $fetch_orders['total_products']; ?></span> </p>
-      <p> Итоговая цена : <span>$<?= $fetch_orders['total_price']; ?>/-</span> </p>
+      <p> Итоговая цена : <span><?= $fetch_orders['total_price']; ?> руб.</span> </p>
       <p> Способ оплаты : <span><?= $fetch_orders['method']; ?></span> </p>
       <form action="" method="post">
          <input type="hidden" name="order_id" value="<?= $fetch_orders['id']; ?>">
          <select name="payment_status" class="select">
             <option selected disabled><?= $fetch_orders['payment_status']; ?></option>
-            <option value="pending">Оплачивается</option>
-            <option value="completed">Выполнен</option>
+            <option value="Ожидает оплаты">Оплачивается</option>
+            <option value="Выполнен">Выполнен</option>
          </select>
         <div class="flex-btn">
          <input type="submit" value="update" class="option-btn" name="update_payment">

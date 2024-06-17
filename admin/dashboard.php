@@ -45,14 +45,14 @@ if(!isset($admin_id)){
          <?php
             $total_pendings = 0;
             $select_pendings = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
-            $select_pendings->execute(['pending']);
+            $select_pendings->execute(['Ожидает оплаты']);
             if($select_pendings->rowCount() > 0){
                while($fetch_pendings = $select_pendings->fetch(PDO::FETCH_ASSOC)){
                   $total_pendings += $fetch_pendings['total_price'];
                }
             }
          ?>
-         <h3><span>$</span><?= $total_pendings; ?><span>/-</span></h3>
+         <h3><span></span><?= $total_pendings; ?><span> руб.</span></h3>
          <p>Невыполненные заказы</p>
          <a href="placed_orders.php" class="btn">Посмотреть заказы</a>
       </div>
@@ -61,14 +61,14 @@ if(!isset($admin_id)){
          <?php
             $total_completes = 0;
             $select_completes = $conn->prepare("SELECT * FROM `orders` WHERE payment_status = ?");
-            $select_completes->execute(['completed']);
+            $select_completes->execute(['Выполнен']);
             if($select_completes->rowCount() > 0){
                while($fetch_completes = $select_completes->fetch(PDO::FETCH_ASSOC)){
                   $total_completes += $fetch_completes['total_price'];
                }
             }
          ?>
-         <h3><span>$</span><?= $total_completes; ?><span>/-</span></h3>
+         <h3><span></span><?= $total_completes; ?><span> руб.</span></h3>
          <p>Выполненые заказы</p>
          <a href="placed_orders.php" class="btn">Посмотреть заказы</a>
       </div>
@@ -125,7 +125,7 @@ if(!isset($admin_id)){
          ?>
          <h3><?= $number_of_messages; ?></h3>
          <p>Новые сообщения</p>
-         <a href="messagess.php" class="btn">Посмотреть сообщения</a>
+         <a href="messages.php" class="btn">Посмотреть сообщения</a>
       </div>
 
    </div>

@@ -90,7 +90,7 @@ if(isset($_GET['delete'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>товары</title>
+   <title>Товары</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -113,7 +113,7 @@ if(isset($_GET['delete'])){
          </div>
          <div class="inputBox">
             <span>Цена товара (обязательно)</span>
-            <input type="number" min="0" class="box" required max="9999999999" placeholder="Ведите цену товара" onkeypress="if(this.value.length == 10) return false;" name="price">
+            <input type="number" min="0" class="box" required max="9999999999" placeholder="Введите цену товара" onkeypress="if(this.value.length == 10) return false;" name="price">
          </div>
         <div class="inputBox">
             <span>Изображение 1 (обязательно)</span>
@@ -153,7 +153,7 @@ if(isset($_GET['delete'])){
    <div class="box">
       <img src="../uploaded_img/<?= $fetch_products['image_01']; ?>" alt="">
       <div class="name"><?= $fetch_products['name']; ?></div>
-      <div class="price">$<span><?= $fetch_products['price']; ?></span>/-</div>
+      <div class="price"><span><?= $fetch_products['price']; ?></span> руб.</div>
       <div class="details"><span><?= $fetch_products['details']; ?></span></div>
       <div class="flex-btn">
          <a href="update_product.php?update=<?= $fetch_products['id']; ?>" class="option-btn">Обновить</a>
@@ -163,7 +163,7 @@ if(isset($_GET['delete'])){
    <?php
          }
       }else{
-         echo '<p class="empty">Нет добавленных товароы</p>';
+         echo '<p class="empty">Нет добавленных товаров</p>';
       }
    ?>
    
